@@ -4,7 +4,7 @@ In 2025, Toronto Paramedic Services responded to 2,747 non-fatal and 126 fatal s
 Data notes for this analysis can be found in the [Data Notes](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/DATANOTES.md) markdown file in the main branch of this repository. 
 
 ## Contents
-This repository contains four folders that can be loaded as a single repository in R. In addition, the folder ["tex-report"](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/tex-report) contains code to produce a detailed report containing analysis for this project, including a detailed methodology and theoretical framework. 
+This repository contains files that can be loaded as a single repository in R. In addition, the folder ["tex-report"](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/tex-report) contains code to produce a detailed report containing analysis for this project, including a detailed methodology and theoretical framework. 
 
 ### R Code Files
 * [1-data-environment.R](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/1-data-environment.R): Installs and loads packages, loads dataframes from raw data files.
@@ -64,14 +64,14 @@ This project was written in R version 4.5.3 ("Reassured Reassurer"). RStudio is 
 
 #### Packages
 The following packages are used in this code:
-* ggspatial (version 1.1.10)
-* jsonlite (version 2.0.0)
-* MASS (version 7.3-65)
-* sf (version 1.1-0)
-* terra (version 1.9-11)
-* tidyverse (version 2.0.0)
-* tmap (version 4.2)
-* viridis (version 0.6.5)
+* [ggspatial](https://cran.r-project.org/web/packages/ggspatial/index.html) (version 1.1.10)
+* [jsonlite](https://cran.r-project.org/web/packages/jsonlite/index.html) (version 2.0.0)
+* [MASS](https://cran.r-project.org/web/packages/MASS/index.html) (version 7.3-65)
+* [sf](https://cran.r-project.org/web/packages/sf/index.html) (version 1.1-0)
+* [terra](https://cran.r-project.org/web/packages/terra/index.html) (version 1.9-11)
+* [tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html) (version 2.0.0)
+* [tmap](https://cran.r-project.org/web/packages/tmap/index.html) (version 4.2)
+* [viridis](https://cran.r-project.org/web/packages/viridis/index.html) (version 0.6.5)
 
 ### Step 3: Run R Files
 Load, in order by the prefix number of the file, each of the .R files. This will produce the analysis sequentially. After running each file, ensure that you have saved any dataframes that you would like to keep as they may change when running the next file. 
