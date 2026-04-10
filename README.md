@@ -14,7 +14,7 @@ This repository contains files that can be loaded as a single repository in R. I
 
 ### Data Files
 * [toronto-ems-calls-suspected-overdose-2025-by-intersection.csv](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/toront0-ems-calls-suspected-overdose-2025-by-intersection.csv): Responses by Toronto Paramedic Services for suspected opioid poisoning events by intersection. 
-* [toronto-shelter-sites.csv](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/toronto-shelter-sites.csv): Geospatial data and bed counts for shelter sites administered by TSSS.
+* [toronto-shelter-sites-apr26.csv](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/toronto-shelter-sites-apr26.csv): Geospatial data and bed counts for shelter sites administered by TSSS operating in April 2026.
 * [toronto-census-tract-populations-2021.csv](www.github.com/maisiedaisie/toronto-shelter-opioid-risk/toronto-census-tract-populations-2021.csv): Population data for each census tract in the Toronto Census Metropolitan Area from the 2021 Census of Population.
 
 In addition to the custom data files contained in this folder, users will need to download several publicly available data files provided by Statistics Canada and the City of Toronto. Information for downloading and loading these data files can be found in the "Setup Instructions" section of this README. 
