@@ -1,21 +1,33 @@
 ################
-## 2-raw-analysis.R ##
-################
-#### ---- 3. Ranking shelters by raw overdose count ---- ####
-## -- 3.1 Define a buffer zone for each shelter site -- ##
-shelter_buffer   <- st_buffer(shelters_sf, dist = 200) # Change the value '200' to define another buffer radius. The buffer radius is measured in metres.
+# Define the 200 metre buffer region for each shelter site
 
-## -- 3.2 Count the number of overdoses within each buffer zone -- ##
-ods_in_buffer <- st_intersection(x = shelter_buffer, y = overdoses_sf) # Finds all intersections within a shelter's buffer zone.
-shelter_total <- ods_in_buffer %>%
+# Count the number of overdoses in each buffer
+buffer_count <- st_intersection(shelter_buffer, overdoses_sf)
+
+shelter_count <- buffer_count %>%
     group_by(PROGRAM_SITE) %>%
     summarize(total_overdoses = sum(OD_COUNT, na.rm = TRUE)) # Aggregates all overdoses that intersect to the shelter in one row. 
 
-## -- 3.3 Rank shelters by number of proximal overdoses -- ##
-shelter_total <- shelter_total %>%
-    mutate(rank = dense_rank(desc(total_overdoses))) # Allows ties without skips, may need to fix.
+# Rank shelter sites by the number of proximal overdose events
+shelter_count <- shelter_count %>%
+    mutate(rank = min_rank(desc(total_overdoses))) # Contains only sites with overdoses within the buffer
 
-shelter_rank <- shelters_sf %>%
-    st_join(shelter_total, by = "PROGRAM_SITE")
+## Attach ranks back to the full shelter dataframe, assign 0 values to the count for sites with no events instead of NA
+shelters_joined <- shelters_sf %>%
+  st_drop_geometry() %>%              
+  left_join(shelter_count, by = "PROGRAM_SITE") %>%
+  mutate(
+    total_overdoses = coalesce(total_overdoses, 0),
+    rank = min_rank(desc(total_overdoses))
+  ) %>%
+  st_as_sf()
 
-shelter_rank # Prints the ranked list of shelters.
+# Print output of this step to CSV (optional)
+# write.csv(shelter_count, "shelter_opioid_event_ranks.csv") # Only sites with overdoses within 200 metres
+# write.csv(
+#  st_drop_geometry(shelters_joined),
+#  "shelters_joined.csv",
+#  row.names = FALSE
+# ) # All shelter sites
+
+################
