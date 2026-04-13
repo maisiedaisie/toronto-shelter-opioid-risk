@@ -1,10 +1,6 @@
 ################
-## 1-data-environment.R ##
-################
 
-#### ---- 1. Install and load packages ---- ####
-install.packages(c("ggspatial", "jsonlite", "MASS", "sf", "terra", "tidyverse", "tmap", "viridis"))
-
+# Load all packages
 library(ggspatial)
 library(jsonlite)   # Contained in some distributions of the tidyverse.
 library(MASS)
@@ -14,8 +10,7 @@ library(tidyverse)
 library(tmap)
 library(viridis)
 
-#### ---- 2. Load and prepare dataframes ---- ####
-## -- 2.1 Load primary dataframes from files -- ##
+# Load dataframes from external files
 overdoses           <- read.csv("toronto-ems-calls-suspected-overdose-2025-by-intersection.csv")
 intersections       <- read.csv("centreline_intersection_4326.csv")
 shelters            <- read.csv("toronto-shelter-sites-apr26.csv")
@@ -26,15 +21,56 @@ toronto_boundary    <- st_read("citygcs_regional_mun_wgs84.shp")    # Current CR
 neighbourhoods      <- st_read("Neighbourhoods - 4326.shp")         # Current CRS: WGS84 (ESPG: 4326)
 tracts              <- st_read("lct_000a21a_e.shp")                 # Current CRS: NAD83 / Statistics Canada Lambert (ESPG: 3347)
 
-## -- 2.2 Create shapefiles -- ##
-# - 2.2.1 Overdoses - #
-# Create separate coordinates from the geometry column of the intersection file
+# Create shapefiles and align CRS
+## Create coordinates from the JSON geometry of "intersections"
 intersections <- intersections %>%
                     rowwise() %>%
                     mutate(
                         coords = list(fromJSON(geometry)$coordinates),
                         lon = coords[[1]],
                         lat = coords[[2]]
+                    ) %>%
+                    select(-coords)
+
+## Join the "intersections" and "overdoses" shapefiles for geocoding
+overdoses_joined <- left_join(overdoses, intersections, by = "OBJECTID")
+
+rm(intersections)
+rm(overdoses)
+gc()
+
+## Create the "overdoses_sf" shapefile
+overdoses_sf <- st_as_sf(overdoses_joined, 
+                            coords = c("lon", "lat"),
+                            remove = FALSE,
+                            crs = 4326) # Coordinates in the intersection file were in the WGS84 projection
+
+
+## Create the "shelters_sf" shapefile
+shelters_sf <- st_as_sf(shelters, 
+                        coords = c("LON", "LAT"),
+                        remove = FALSE,
+                        crs = 4326)
+
+rm(shelters)
+gc()
+
+## Convert all shapefiles to NAD83/ UTM zone 17 projection
+overdoses_sf        <- st_transform(overdoses_sf, crs = 26917)
+shelters_sf         <- st_transform(shelters_sf, crs = 26917)
+toronto_boundary    <- st_transform(toronto_boundary, crs = 26917)
+neighbourhoods      <- st_transform(neighbourhoods, crs = 26917)
+tracts              <- st_transform(tracts, crs = 26917)
+
+## Prepare the census tracts dataframe
+### Reduce the geography of "tracts" to the Toronto census subdivision
+toronto_tracts <- st_intersection(tracts, toronto_boundary)
+
+rm(tracts)
+gc()
+
+### Attach population counts to the "toronto_tracts" dataframe
+tracts_joined <- left_join(toronto_tracts, tract_populations, by = "CTNAME")                        lat = coords[[2]]
                     ) %>%
                     select(-coords)
 
