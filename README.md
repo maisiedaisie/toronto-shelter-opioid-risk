@@ -47,9 +47,9 @@ Filename: citygcs_regional_mun_wgs84.zip
 Author: Social Development, Finance & Administration (City of Toronto)  
 Available from: [Neighbourhoods](https://open.toronto.ca/dataset/neighbourhoods/)  
 License: [Open Government License - Toronto](https://open.toronto.ca/open-data-licence/)  
-Selections: "Shapefile", "WGS84"
+Selections: "Shapefile", "WGS84"  
 Filename: "Neighbourhoods - 4326.zip"  
-Additional notes: donwload only the "Neighbourhoods" file, not the "Neighbourhoods - historical 140" file. 
+Additional notes: download only the "Neighbourhoods" file, not the "Neighbourhoods - historical 140" file. 
 
 #### Census Tract Boundary File
 Author: Statistics Canada  
