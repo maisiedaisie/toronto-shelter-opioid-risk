@@ -9,6 +9,6 @@ install.packages("renv")
 renv::restore()
 
 # Load and run the other R source files
-source("/R-code/01-data-environment.R")
-source("/R-code/02-data-validation.R")
-source("/R-code/03-simple-analysis.R")
+source("R-code/01-data-environment.R")
+source("R-code/02-data-validation.R")
+source("R-code/03-simple-analysis.R")
