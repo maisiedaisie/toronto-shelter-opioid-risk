@@ -100,7 +100,7 @@ This project is not open to formal collaborations. However, if you would like to
 ### Reporting Issues and Questions
 If you encounter an issue or bug when running the code or downloading files from this repository, please create a detailed issue. Please make sure to include at least the file name, the code snipped (if applicable), and a description of the issue when making a report. 
 
-If you have a technical question about the analysis, please feel free to create a new discussion post. We will respond to all issues/questions as soon as we can!
+If you have a technical question about the analysis, please feel free to create a new issue post. We will respond to all issues/questions as soon as we can!
 
 For questions or issues relating to an external data source or file, please contact the author of that file directly. Many external files have their own technical documentation that may also be helpful for users. A list of sources and authors can be found in the [DATANOTES.md](github.com/maisiedaisie/toronto-shelter-opioid-risk/information-and-notes/DATANOTES.md) file. 
 
