@@ -72,7 +72,7 @@ This folder contains the raw R code files to reproduce the analysis. These files
 
 - [03-simple-analysis.R](github.com/maisiedaisie/toronto-shelter-opioid-risk/R-code/03-simple-analysis.R): contains code to produce a list of TSSS sites with the number of proximal suspected poisoning events within two buffer radii: 200 metres and 500 metres. This code will print this information into a .csv file in the user's working directory. This code produces only a raw count without population-adjusted risk quantification. 
 
-- [04-statistical-analysis.R](github.com/maisiedaisie/toronto-shelter-opioid-risk/R-code/04-statistical-analysis.R): contains code to produce a SIR and RR for each shelter site. This code will also produce statistical models to estimate the uncertainty of the analysis, including the use of Poisson distributions and Moran's _I_ statistic. This file is not run by the code snipped included in [QUICKSTART.md](github.com/maisiedaisie/toronto-shelter-opioid-risk/information-and-notes/QUICKSTART.md). 
+- [04-statistical-analysis.R](github.com/maisiedaisie/toronto-shelter-opioid-risk/R-code/04-statistical-analysis.R): contains code to produce a SIR and RR for each shelter site. We will be updating this code in the near future to produce statistical models to estimate the uncertainty of the analysis, including the use of Poisson distributions and Moran's _I_ statistic. This file is not run by the code snippet included in [QUICKSTART.md](github.com/maisiedaisie/toronto-shelter-opioid-risk/information-and-notes/QUICKSTART.md). 
 
 - [05-figures.R](github.com/maisiedaisie/toronto-shelter-opioid-risk/R-code/05-figures.R): contains code to produce useful visualizations of the analysis, including geospatial mapping. 
 
@@ -107,7 +107,7 @@ For questions or issues relating to an external data source or file, please cont
 ## Contact Information
 For questions or concerns related to this repository, please leave a comment or issue post on GitHub in the appropriate section. 
 
-This repository is maintained by Maisie Davis. You can contact her directly by e-mail at maisie.davis@alumni.utoronto.ca. 
+This repository is maintained by Maisie Davis. You can contact her directly by e-mail at [maisie.davis@icha-toronto.ca](mailto:maisie.davis@icha-toronto.ca). 
 
 ## Acknowledgements
 This project has adapted public data from Toronto Public Health, Toronto Paramedic Services, Toronto Shelter & Support Services, and Statistics Canada. Thank you to all the staff of those organizations who make those data public. 
